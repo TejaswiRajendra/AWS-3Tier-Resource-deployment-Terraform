@@ -16,8 +16,8 @@ resource "aws_db_instance" "db_sg" {
   }
 }
 
-resource "aws_db_subnet_group" "my_subnet_group2" {
-  name       = "my-subnet-group2"
+resource "aws_db_subnet_group" "my_subnet_group" {
+  name       = "my-subnet-group"
   subnet_ids = [aws_subnet.private_subnet_1.id, aws_subnet.private_subnet_2.id]
   tags = {
     Name = "TF-DB-Subnet-Group"
