@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'master', url: 'https://github.com/TejaswiRajendra/AWS-3Tier-Terraform.git'
+                git branch: 'US-4321', url: 'https://github.com/TejaswiRajendra/AWS-3Tier-Terraform.git'
             }
         }
 
