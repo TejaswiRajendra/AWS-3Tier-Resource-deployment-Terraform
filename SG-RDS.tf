@@ -16,4 +16,7 @@ resource "aws_security_group" "db_sg" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
+  tags = {
+    Name = "TF-RDS-SG"
+  }
 }
