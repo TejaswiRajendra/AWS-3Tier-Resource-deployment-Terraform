@@ -14,7 +14,7 @@ resource "aws_security_group" "web_sg" {
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
-    cidr_blocks = ["aws_security_group.alb_sg.id"]  # Allow from anywhere
+    cidr_blocks = [aws_security_group.alb_sg.id]  # Allow from anywhere
   }
 
   # Allow SSH (22) only from your IP (Replace YOUR_IP)
