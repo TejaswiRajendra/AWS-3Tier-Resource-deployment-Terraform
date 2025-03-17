@@ -11,7 +11,7 @@ resource "aws_lb" "internal_alb" {
 }
 
 resource "aws_lb_target_group" "ILB_tg" {
-  name     = "flask-target-group"
+  name     = "ILB-target-group"
   port     = 4000
   protocol = "HTTP"
   vpc_id   = aws_vpc.my_vpc.id
