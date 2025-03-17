@@ -6,26 +6,26 @@ resource "aws_security_group" "web_sg" {
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]  # Allow from anywhere
+    cidr_blocks = ["0.0.0.0/0"]  # Allow from anywhere (public access)
   }
 
-  # Allow HTTP (80) for traffic from External LB 
+  # Allow HTTP (80) for traffic from External ALB
   ingress {
-    from_port   = 80
-    to_port     = 80
-    protocol    = "tcp"
-    cidr_blocks = [aws_security_group.alb_sg.id]  # Allow from anywhere
+    from_port       = 80
+    to_port         = 80
+    protocol        = "tcp"
+    security_groups = [aws_security_group.alb_sg.id]  # Reference ALB security group
   }
 
-  # Allow SSH (22) only from your IP (Replace YOUR_IP)
+  # Allow SSH (22) only from your IP
   ingress {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["223.185.134.229/32"]  # Replace with your public IP
+    cidr_blocks = ["223.185.134.229/32"]  # Your public IP
   }
 
-  # Allow all outbound traffic (default egress rule)
+  # Allow all outbound traffic
   egress {
     from_port   = 0
     to_port     = 0
@@ -37,4 +37,3 @@ resource "aws_security_group" "web_sg" {
     Name = "TF-WebAppSG"
   }
 }
-
