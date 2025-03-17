@@ -13,8 +13,8 @@ resource "aws_db_instance" "my_rds" {
   db_subnet_group_name  = aws_db_subnet_group.my_subnet_group.name
 }
 
-resource "aws_db_subnet_group" "my_subnet_group" {
-  name       = "my-subnet-group"
+resource "aws_db_subnet_group" "my_subnet_group1" {
+  name       = "my-subnet-group1"
   subnet_ids = [aws_subnet.private_subnet_1.id, aws_subnet.private_subnet_2.id]
 }
 
