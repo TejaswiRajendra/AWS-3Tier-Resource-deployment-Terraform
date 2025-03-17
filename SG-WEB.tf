@@ -6,7 +6,7 @@ resource "aws_security_group" "web_sg" {
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
-    cidr_blocks = ["223.185.134.229/32"]  # Allow from anywhere
+    cidr_blocks = ["0.0.0.0/0"]  # Allow from anywhere
   }
 
   # Allow HTTP (80) for traffic from External LB 
