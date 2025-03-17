@@ -11,7 +11,7 @@ resource "aws_lb" "external_alb" {
 }
 
 resource "aws_lb_target_group" "external_alb_tg" {
-  name     = "external-alb-tg"
+  name     = "external-alb-tg-${random_string.suffix.result}"  # Unique name
   port     = 80
   protocol = "HTTP"
   vpc_id   = aws_vpc.my_vpc.id
@@ -41,4 +41,10 @@ resource "aws_lb_target_group_attachment" "external_alb_attachment" {
   target_group_arn = aws_lb_target_group.external_alb_tg.arn
   target_id        = aws_instance.web.id
   port             = 80
+}
+
+resource "random_string" "suffix" {
+  length  = 8
+  special = false
+  upper   = false
 }
