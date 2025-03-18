@@ -1,5 +1,5 @@
 # Add this if not already present in your config
-resource "random_string" "suffix" {
+resource "random_string" "suffix_int" {
   length  = 8
   special = false
   upper   = false
