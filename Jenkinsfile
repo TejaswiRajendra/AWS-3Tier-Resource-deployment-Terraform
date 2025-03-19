@@ -16,6 +16,9 @@ pipeline {
             }
         }
         stage('Apply Terraform') {
+            when {
+                branch 'master'  // Runs only on the master branch
+            }
             steps {
                 sh 'terraform apply -auto-approve tfplan'
             }
