@@ -14,7 +14,7 @@ resource "aws_security_group" "app_sg" {
     from_port       = 4000
     to_port         = 4000
     protocol        = "tcp"
-    cidr_blocks = ["223.185.134.229/32"]  # Allow only from ALB
+    cidr_blocks = ["0.0.0.0/0"]  # Allow only from ALB
   }
 
   egress {
