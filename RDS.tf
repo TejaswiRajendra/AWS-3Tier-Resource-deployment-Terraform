@@ -1,5 +1,5 @@
 resource "aws_db_instance" "my_rds" {
-  identifier             = "terraform-rds-instance"
+  identifier             = "terraform-rds"
   allocated_storage      = 20
   storage_type           = "gp2"
   engine                 = "mysql"
@@ -12,9 +12,10 @@ resource "aws_db_instance" "my_rds" {
   vpc_security_group_ids = [aws_security_group.db_sg.id]
   db_subnet_group_name  = aws_db_subnet_group.my_subnet_group.name
 }
-
 resource "aws_db_subnet_group" "my_subnet_group" {
-  name       = "my-subnet-group"
+  name       = "my-subnet-group-1"
   subnet_ids = [aws_subnet.private_subnet_1.id, aws_subnet.private_subnet_2.id]
+  tags = {
+    Name = "TF-DB-Subnet-Group1"
+  }
 }
-
