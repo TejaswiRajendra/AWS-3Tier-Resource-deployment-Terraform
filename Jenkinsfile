@@ -5,7 +5,7 @@ pipeline {
         AWS_ACCESS_KEY_ID     = credentials('aws-access-key-id')
         AWS_SECRET_ACCESS_KEY = credentials('aws-secret-access-key')
         AWS_REGION            = 'us-east-1'
-        S3_BUCKET_NAME        = 'Terraform-backup'
+        S3_BUCKET_NAME        = 'tejaswirajendra-tfsbuck28081998'
     
 
     stages {
