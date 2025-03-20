@@ -1,8 +1,8 @@
 terraform {
   backend "s3" {
-    bucket         = "your-terraform-state-bucket"
+    bucket         = "Terraform-backup"
     key            = "terraform.tfstate"
-    region         = "us-east-1"
+    region         = var.aws_region
     encrypt        = true
   }
 }
