@@ -25,10 +25,10 @@ pipeline {
         stage('Terraform Init with S3 Backend') {
             steps {
                 sh '''
-                terraform init -backend-config="bucket=${S3_BUCKET_NAME}" \
-                               -backend-config="key=terraform.tfstate" \
-                               -backend-config="region=${AWS_REGION}" \
-                               -backend-config="encrypt=true"
+                terraform init -backend-config="bucket=tejaswirajendra-tfsbuck28081998" \
+               -backend-config="key=terraform.tfstate" \
+               -backend-config="region=us-east-1" \
+               -backend-config="encrypt=true"
                 '''
             }
         }
