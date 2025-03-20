@@ -22,7 +22,7 @@ resource "aws_security_group" "web_sg" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["223.185.134.229/32"]  # Your public IP
+    cidr_blocks = ["0.0.0.0/0"] 
   }
 
   # Allow all outbound traffic
