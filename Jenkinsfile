@@ -11,7 +11,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/TejaswiRajendra/AWS-3Tier-Terraform.git'
+                git branch: 'master', url: 'https://github.com/TejaswiRajendra/AWS-3Tier-Terraform.git'
             }
         }
 
@@ -41,7 +41,7 @@ pipeline {
 
         stage('Terraform Apply') {
             when {
-                branch 'master'  // Apply only on the main branch
+                branch 'master'  // Apply only on the master branch
             }
             steps {
                 sh 'terraform apply -auto-approve tfplan'
