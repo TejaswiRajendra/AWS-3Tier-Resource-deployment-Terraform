@@ -52,15 +52,10 @@ pipeline {
         }
         success {
             echo 'Terraform execution successful!'
-            emailext subject: "Jenkins: Terraform Success",
-                     body: "Terraform deployment was successful.\n\nCheck Jenkins for details.",
-                     to: "poojass423@gmail.com, tejaswirajendra288@gmail.com"
-        }
+            
         failure {
             echo 'Terraform execution failed!'
-            emailext subject: "Jenkins: Terraform Failed",
-                     body: "Terraform deployment failed. Please check the Jenkins logs for errors.",
-                     to: "poojass423@gmail.com, tejaswirajendra288@gmail.com"
+            
         }
     }
 }
