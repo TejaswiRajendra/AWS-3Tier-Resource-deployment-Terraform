@@ -52,7 +52,7 @@ pipeline {
         }
         success {
             echo 'Terraform execution successful!'
-            
+        }  
         failure {
             echo 'Terraform execution failed!'
             
