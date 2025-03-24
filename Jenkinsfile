@@ -44,18 +44,29 @@ pipeline {
                 sh 'terraform apply -auto-approve tfplan'
             }
         }
-    }
+    
+        stage('Download Terraform State File') {
+            steps {
+                    sh "aws s3 cp s3://${S3_BUCKET_NAME}/terraform.tfstate . || echo 'State file not found in S3'"
+            }
+        }       
 
+    }
     post {
-        always {
-            archiveArtifacts artifacts: 'terraform.tfstate', fingerprint: true
+      always {
+        script {
+            if (fileExists('terraform.tfstate')) {
+                archiveArtifacts artifacts: 'terraform.tfstate', fingerprint: true
+            } else {
+                echo 'No terraform.tfstate file found. Skipping artifact archival.'
+            }
         }
+       }
         success {
             echo 'Terraform execution successful!'
         }  
         failure {
-            echo 'Terraform execution failed!'
-            
+            echo 'Terraform execution failed!'   
         }
     }
 }
