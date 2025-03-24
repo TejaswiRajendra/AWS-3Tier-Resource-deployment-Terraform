@@ -6,15 +6,11 @@ pipeline {
         AWS_SECRET_ACCESS_KEY = credentials('aws-secret-access-key')
         AWS_REGION            = 'us-east-1'
         S3_BUCKET_NAME        = 'tejaswirajendra-tfsbuck28081998'
-    
+        DYNAMODB_TABLE_NAME   = 'terraform-state-locks' 
+    }
 
     stages {
-        stage('Checkout') {
-            steps {
-                git branch: 'main', url: 'https://github.com/TejaswiRajendra/AWS-3Tier-Terraform.git'
-            }
-        }
-
+        
         stage('Setup Terraform') {
             steps {
                 sh 'terraform --version'
@@ -25,10 +21,11 @@ pipeline {
         stage('Terraform Init with S3 Backend') {
             steps {
                 sh '''
-                terraform init -backend-config="bucket=tejaswirajendra-tfsbuck28081998" \
-               -backend-config="key=terraform.tfstate" \
-               -backend-config="region=us-east-1" \
-               -backend-config="encrypt=true"
+                terraform init -backend-config="bucket=${S3_BUCKET_NAME}" \
+                               -backend-config="key=terraform.tfstate" \
+                               -backend-config="region=${AWS_REGION}" \
+                               -backend-config="dynamodb_table=${DYNAMODB_TABLE_NAME}" \
+                               -backend-config="encrypt=true"
                 '''
             }
         }
@@ -41,14 +38,12 @@ pipeline {
 
         stage('Terraform Apply') {
             when {
-                branch 'master'  // Apply only on main branch
+                branch 'master'  // Apply only on the master branch
             }
             steps {
                 sh 'terraform apply -auto-approve tfplan'
             }
         }
-
-        
     }
 
     post {
@@ -57,9 +52,15 @@ pipeline {
         }
         success {
             echo 'Terraform execution successful!'
+            emailext subject: "Jenkins: Terraform Success",
+                     body: "Terraform deployment was successful.\n\nCheck Jenkins for details.",
+                     to: "poojass423@gmail.com, tejaswirajendra288@gmail.com"
         }
         failure {
             echo 'Terraform execution failed!'
+            emailext subject: "Jenkins: Terraform Failed",
+                     body: "Terraform deployment failed. Please check the Jenkins logs for errors.",
+                     to: "poojass423@gmail.com, tejaswirajendra288@gmail.com"
         }
     }
 }
