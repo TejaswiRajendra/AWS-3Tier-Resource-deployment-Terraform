@@ -43,11 +43,11 @@ This project focuses on provisioning a **three-tier AWS infrastructure** using *
 - Confirm that the infrastructure setup is complete and ready for application deployment.
 
 **## Expected Outputs**
-✅ Fully automated three-tier AWS infrastructure provisioning.  
-✅ **Jenkins pipeline** ensures seamless deployment.  
-✅ **S3 remote state storage** and **DynamoDB state locking**.  
-✅ **Version-controlled Terraform scripts** in GitHub.  
-✅ Scalable, secure, and efficiently managed cloud infrastructure.  
+* Fully automated three-tier AWS infrastructure provisioning.  
+* Jenkins pipeline ensures seamless deployment.  
+* S3 remote state storage and DynamoDB state locking.  
+* Version-controlled Terraform scripts in GitHub.  
+* Scalable, secure, and efficiently managed cloud infrastructure.  
 
 **## Conclusion**
 This project successfully automated AWS infrastructure deployment using **Terraform and Jenkins**, enabling seamless provisioning through a CI/CD pipeline. The use of **S3 and DynamoDB** for backend storage enhances security and reliability, ensuring a well-structured cloud infrastructure setup.
