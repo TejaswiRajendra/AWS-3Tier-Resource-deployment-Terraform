@@ -4,7 +4,7 @@
 This project focuses on provisioning a **three-tier AWS infrastructure** using **Terraform** and **Jenkins**. The client requires an automated infrastructure deployment process without application deployment. The infrastructure provisioning is managed through a **Jenkins pipeline**, ensuring a streamlined and automated workflow.
 
 **## Tools & Technologies Required**
-- **AWS Services**: EC2, S3, DynamoDB  
+- **AWS Services**: VPC, EC2, S3 , RDS
 - **Terraform**: Infrastructure as Code (IaC) tool  
 - **Jenkins**: CI/CD automation server  
 - **GitHub**: Version control for Terraform scripts  
